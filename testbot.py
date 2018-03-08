@@ -6,6 +6,8 @@ from flask import Flask as fl
 
 app = fl(__name__)
 
+@app.route('/')
+
 def refresh_lp(vkapi):
     # Запрашиваем параметры подключения
     return vkapi.messages.getLongPollServer()
