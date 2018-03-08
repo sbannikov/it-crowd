@@ -8,13 +8,12 @@ app = fl(__name__)
 
 @app.route('/')
 
-def refresh_lp(vkapi):
+def refresh_lp(vk):
     # Запрашиваем параметры подключения
-    vk = vkapi.messages.getLongPollServer()
-    return vk
+    return vk.messages.getLongPollServer()
 def main():
     session = vk.Session( '64539d85290a5d7f2bd416abe68d12e626efbf1eb275c51643b02751130c917190a717638ed758c9ba1fa')
-    vkapi = vk.API(session, v='5.38')
+    vk = vk.API(session, v='5.38')
 
     lp = refresh_lp(vkapi)
 
