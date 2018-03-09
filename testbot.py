@@ -13,7 +13,7 @@ def refresh_lp(vkapi):
     return vkapi.messages.getLongPollServer()
 def main():
     session = vk.Session( '64539d85290a5d7f2bd416abe68d12e626efbf1eb275c51643b02751130c917190a717638ed758c9ba1fa')
-    vk = vk.API(session, v='5.38')
+    vkapi = vk.API(session, v='5.38')
 
     lp = refresh_lp(vkapi)
 
