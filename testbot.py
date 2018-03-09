@@ -8,9 +8,7 @@ app = fl(__name__)
 
 @app.route('/')
 
-def refresh_lp(vk):
-    # Запрашиваем параметры подключения
-    return vk.messages.getLongPollServer()
+
 def main():
     session = vk.Session( '64539d85290a5d7f2bd416abe68d12e626efbf1eb275c51643b02751130c917190a717638ed758c9ba1fa')
     vk = vk.API(session, v='5.38')
@@ -78,5 +76,9 @@ def main():
 
         # Задержка на одну секунду
         time.sleep(1)
+def refresh_lp(vk):
+    # Запрашиваем параметры подключения
+    return vk.messages.getLongPollServer()
+
 if __name__ == '__main__':
     main()
