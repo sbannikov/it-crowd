@@ -8,14 +8,14 @@ app = fl(__name__)
 
 @app.route('/')
 
-def refresh_lp(vkapi):
+def refresh_lp(vk):
     # Запрашиваем параметры подключения
-    return vkapi.messages.getLongPollServer()
+    return vk.messages.getLongPollServer()
 def main():
     session = vk.Session( '64539d85290a5d7f2bd416abe68d12e626efbf1eb275c51643b02751130c917190a717638ed758c9ba1fa')
-    vkapi = vk.API(session, v='5.38')
+    vk = vk.API(session, v='5.38')
 
-    lp = refresh_lp(vkapi)
+    lp = refresh_lp(vk)
 
     ts = lp['ts']
 
@@ -40,14 +40,14 @@ def main():
             continue
 
         if response.get('failed') and response['failed'] == 2:
-            lp = refresh_lp(vkapi)
+            lp = refresh_lp(vk)
             time.sleep(1)
             continue
 
         ts = response['ts']
 
         if not response.get('updates'):
-            lp = refresh_lp(vkapi)
+            lp = refresh_lp(vk)
             time.sleep(1)
             continue
 
@@ -72,7 +72,7 @@ def main():
                     except:
                         mes = 'Не используйте смайлики и другие специальные символы'
                     try:
-                        vkapi.messages.send (user_id = peer_id, message=mes)
+                        vk.messages.send (user_id = peer_id, message=mes)
                     except:
                         continue
 
