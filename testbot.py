@@ -11,9 +11,9 @@ app = fl(__name__)
 
 def main():
     session = vk.Session( '64539d85290a5d7f2bd416abe68d12e626efbf1eb275c51643b02751130c917190a717638ed758c9ba1fa')
-    vk = vk.API(session, v='5.38')
+    vkapi = vk.API(session, v='5.38')
 
-    lp = refresh_lp(vk)
+    lp = refresh_lp(vkapi)
 
     ts = lp['ts']
 
@@ -38,7 +38,7 @@ def main():
             continue
 
         if response.get('failed') and response['failed'] == 2:
-            lp = refresh_lp(vk)
+            lp = refresh_lp(vkapi)
             time.sleep(1)
             continue
 
@@ -70,15 +70,15 @@ def main():
                     except:
                         mes = 'Не используйте смайлики и другие специальные символы'
                     try:
-                        vk.messages.send (user_id = peer_id, message=mes)
+                        vkapi.messages.send (user_id = peer_id, message=mes)
                     except:
                         continue
 
         # Задержка на одну секунду
         time.sleep(1)
-def refresh_lp(vk):
+def refresh_lp(vkapi):
     # Запрашиваем параметры подключения
-    return vk.messages.getLongPollServer()
+    return vkapi.messages.getLongPollServer()
 
 if __name__ == '__main__':
     main()
