@@ -1,1 +1,1 @@
-web: gunicorn testbot:app
+worker: gunicorn testbot:app
