@@ -78,7 +78,7 @@ def main():
                             vkapi.messages.send (user_id = peer_id, message=mes)
                         except:
                             continue
-        except Exception as ex:
+       except Exception as ex:
             print (ex.message)
             
         # Задержка на одну секунду
