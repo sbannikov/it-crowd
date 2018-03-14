@@ -2,11 +2,10 @@ import vk
 import requests
 import json
 import time
-from flask import Flask as fl
+# from flask import Flask as fl
 
-app = fl(__name__)
-
-@app.route('/')
+# app = fl(__name__)
+# @app.route('/')
 
 
 def main():
@@ -79,10 +78,15 @@ def main():
                         except:
                             continue
         except Exception as ex:
-            print (ex.message)
+            # Вывод сообщения об ошибке
+            if hasattr (ex, 'message'):
+                print (ex.message)
+            else:
+                print (ex)
             
         # Задержка на одну секунду
         time.sleep(1)
+        
 def refresh_lp(vkapi):
     # Запрашиваем параметры подключения
     return vkapi.messages.getLongPollServer()
