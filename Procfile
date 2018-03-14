@@ -1,1 +1,1 @@
-worker: gunicorn testbot:app
+worker: python testbot.py
